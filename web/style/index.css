@@ -1,0 +1,123 @@
+*{
+    color: black;
+}
+body{
+    background-image: url('3salle-de-bain-moderne.jpg');
+    background-size: cover;
+}
+
+#grid_body{
+    display: grid;
+    grid-template-columns: 40fr 20fr 40fr;
+    grid-template-rows: 2fr 5fr 10fr;
+    grid-template-areas: 
+        "email titre titre titre ."
+        ". menu menu menu ."
+        "aff aff aff aff aff";
+}
+
+#email{
+    grid-area: email;
+}
+
+.titre{
+    grid-area: titre;
+    display: block;
+    width: 306px;
+    text-align: center;
+    display: block;
+    color: white;
+
+}
+.affichage{
+    grid-area: aff;
+    display: grid;
+    grid-template-columns: 50fr 50fr ;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "table table buttom graph graph";
+    
+    overflow: hidden;
+    height: 417px;
+}
+
+#buttom{
+    grid-area: buttom;
+    
+}
+button{
+    display: block;
+}
+.client{
+    grid-area: client;
+    display: grid;
+    grid-template-columns: 50fr 50fr ;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "table_client table_client . graph graph";
+         
+}
+
+table{
+    background-color: beige;
+    grid-area: table;
+    height: 50%;
+    
+
+}
+#diagrame{
+    grid-area: graph;
+    height: 98%;  
+    width: 722px;  
+    background-color: beige;
+
+}
+.pg_notify{
+    display: none;
+}
+
+#menu{
+    grid-area: menu;
+    text-align: center;
+}
+#table_client{
+    grid-area: table_client;
+}
+
+table,td {
+    border: 1px solid #333;
+}
+td{
+    height: 20px;
+}
+
+ul{
+    list-style-type: none;
+    font-size: 1em; 
+    width:120px;
+    margin:25px 0 0 0;
+    white-space:nowrap;
+}
+
+
+#piece{
+    margin-left: 20px;
+}
+
+li{
+    display:inline; 
+}
+#table{
+    overflow: auto;
+}
+
+.container {
+    color: #E8E9EB;
+    background: #222;
+    border: #555652 1px solid;
+    padding: 10px;
+}
+
+input{
+    display: inherit;
+}
