@@ -8,5 +8,5 @@ docker --debug build --target init . -t init
 docker network create my_network
 
 docker run --rm -d --network my_network -p 80:80 web
-docker run --rm -d --network my_network bdd
+docker run --rm -d --network my_network -p 3306:3306 bdd
 docker run --rm -d --network my_network api
