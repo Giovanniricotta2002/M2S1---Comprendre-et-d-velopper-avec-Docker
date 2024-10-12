@@ -35,4 +35,7 @@ ENV MYSQL_PASSWORD=${MYSQL_PAS}
 
 FROM php:8.3.12-apache-bullseye AS web
 
+RUN  apt-get update && apt-get install vim -y & \
+    docker-php-ext-install mysqli pdo pdo_mysql
+
 COPY --from=init /app /var/www/html/

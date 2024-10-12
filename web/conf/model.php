@@ -14,5 +14,4 @@ function compt_email($email){
     $statement = $bdd->prepare($sql_email);
     $statement->bindValue(':email', $email);
     $statement->execute();
-
 }

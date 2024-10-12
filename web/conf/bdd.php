@@ -3,9 +3,9 @@
 $ip = $_SERVER['SERVER_ADDR'];
 
 
-define("USER","pi2");
-define("PASSWD","");
-define("SERVER",$ip);
+define("USER","root");
+define("PASSWD","<custom password>");
+define("SERVER",$ip); // ! Change l'ip donner en fesant docker network inspect my_my_network
 define("BASE","bdd_detection_innondation");
 
 
