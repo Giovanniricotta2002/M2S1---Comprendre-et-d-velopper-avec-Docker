@@ -24,9 +24,7 @@ CREATE DATABASE IF NOT EXISTS `bdd_detection_innondation` DEFAULT CHARACTER SET 
 USE `bdd_detection_innondation`;
 
 -- --------------------------------------------------------
-CREATE USER 'pi2'@'%' IDENTIFIED BY 'pi2';
-GRANT ALL PRIVILEGES ON *.* TO 'pi2'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
+
 --
 -- Structure de la table `data`
 --
