@@ -58,19 +58,21 @@ docker volume create mysql
 Les commandes suivantes lancent les conteneurs pour l'application Web, la base de données et l'API.
 
 ```bash
-docker run --rm -d --network my_network -p 80:80 --name web web
-```
-
-- Lance le conteneur `web` dans le réseau `my_network`. Le port `80` de la machine hôte est mappé au port `80` du conteneur. Le conteneur est supprimé automatiquement après son arrêt (`--rm`) et fonctionne en arrière-plan (`-d`).
-
-```bash
 docker run --rm -d --network my_network -e MYSQL_PASSWORD=<custom password> -e MYSQL_ROOT_PASSWORD=<custom password> -p 3306:3306 -v "mysql:/var/lib/mysql" --name bdd bdd
 ```
 
 - Cette commande lance un conteneur pour la base de données MySQL (`bdd`) dans le réseau `my_network`, avec les mots de passe MySQL spécifiés dans les variables d'environnement. Le port `3306` de la machine hôte est mappé au port `3306` du conteneur. Le volume `mysql` est monté pour persister les données dans `/var/lib/mysql`.
 
+- Il faudra modifier les fichiers fichier [lecture_json_et_ecriture_BDD ligne 54-56](api_python/lecture_json_et_ecriture_BDD.py) pour l'api et [/web/conf/bdd.php](web/conf/bdd.php) pour la vue web si les variables d'env sont pas bien mis
+
 ```bash
-docker run --rm -d --network my_network --name api api
+docker run --rm -d --network my_network -p 80:80 -e MYSQL_PASSWORD=<custom password> --name web web
+```
+
+- Lance le conteneur `web` dans le réseau `my_network`. Le port `80` de la machine hôte est mappé au port `80` du conteneur. Le conteneur est supprimé automatiquement après son arrêt (`--rm`) et fonctionne en arrière-plan (`-d`).
+
+```bash
+docker run --rm -d --network my_network -e MYSQL_PASSWORD=<custom password> --name api api
 ```
 
 - Lance le conteneur `api` dans le réseau `my_network`, en arrière-plan, avec le nom `api`.

@@ -2,6 +2,7 @@ import json  ## librairie pour le forma json
 import smtplib ## librairie pour le serveur SMTP
 import socket ## librairie pour me permettre d'avoir l'ip de la machine
 import mysql.connector ## librairie pour mysql
+import os
 
 
 
@@ -52,8 +53,8 @@ def servhttp_to_mysql(fichier, ip): ## fonction qui permet de mettre les valeur 
 
     connection_params = { ## variable qui permet la connection a la BDD
         'host': ip,
-        'user': "pi2",
-        'password': "",
+        'user': "root",
+        'password': os.environ["MYSQL_PASSWORD"] if "<custom password>" else os.environ["MYSQL_PASSWORD"],
         'database': "bdd_detection_innondation",
     }
     request = """INSERT INTO `data`(`temperature`, `humidite`, `Niveau_deau`, `piece`, `alerte`) 
