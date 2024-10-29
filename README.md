@@ -1,14 +1,63 @@
 # M2S1---Comprendre-et-développer-avec-Docker
 
+## Utilisation de Docker Compose
+
+Ce guide décrit les étapes pour utiliser Docker Compose.
+
+### 1. Création du réseau et du volume Docker
+
+Si ce n'est pas déjà fait, exécutez les commandes suivantes :
+
+```bash
+docker network create my_network
+```
+
+```bash
+docker volume create mysql
+```
+
+### 2. Configuration du fichier Compose
+
+Ouvrez le fichier [compose.yml](docker/compose.yml) et remplacez **<custom password>** par le mot de passe souhaité.
+
+### 3. Démarrage de Docker Compose
+
+Pour lancer les services, utilisez :
+
+```bash
+docker compose up
+```
+
+### 3.1 Démarrage en arrière-plan (optionnel)
+
+Pour démarrer en arrière-plan, utilisez :
+
+```bash
+docker compose up -d
+```
+
+### 4. Démarrage avec suivi des changements
+
+Pour lancer Docker Compose avec suivi des modifications en temps réel, utilisez :
+
+```bash
+docker compose up --watch
+```
+
+-----
+
+## Pour un Docker run
+
 Ce document explique comment construire et exécuter des conteneurs Docker pour différentes cibles (init, web, bdd, api) tout en configurant un réseau Docker et des volumes pour les bases de données.
 
-## 1. Construction des images Docker
+### 1. Construction des images Docker
 
 Chaque commande suivante construit une image Docker spécifique pour différentes cibles dans votre application.
 
 ```bash
 docker --debug build --target init . -t init
 ```
+
 - Cette commande construit l'image Docker cible `init` en mode débogage, étiquetée `init`.
 
 ----
@@ -37,7 +86,7 @@ docker --debug build --target api . -t api
 
 ---
 
-## 2. Création du réseau et du volume Docker
+### 2. Création du réseau et du volume Docker
 
 Avant de lancer les conteneurs, nous créons un réseau Docker pour permettre la communication entre les conteneurs et un volume pour persister les données de la base de données.
 
@@ -53,7 +102,7 @@ docker volume create mysql
 
 - Crée un volume Docker nommé `mysql` qui sera utilisé pour stocker les données de la base de données MySQL de manière persistante.
 
-## 3. Lancement des conteneurs
+### 3. Lancement des conteneurs
 
 Les commandes suivantes lancent les conteneurs pour l'application Web, la base de données et l'API.
 
