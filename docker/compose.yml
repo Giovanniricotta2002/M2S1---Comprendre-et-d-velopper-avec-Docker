@@ -1,0 +1,75 @@
+services:
+  apis:
+    image: api
+    build: 
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: api
+    develop:
+      watch:
+        - action: sync
+          path: ../api_python
+          target: 2py_http_serv.py
+    networks:
+      - prod
+      - database
+    configs:
+      - env
+    environment:
+      - MYSQL_PASSWORD=<custom password>
+    secrets:
+      - certifBdd
+  
+  web:
+    image: web
+    build: 
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: web
+    develop:
+      watch:
+        - action: sync
+          path: ../web
+          target: apache2-foreground
+    networks:
+      - prod
+      - database
+    environment:
+      - MYSQL_PASSWORD=<custom password>
+    ports:
+      - "80:80"
+    secrets:
+      - certifBdd
+  
+  bdd:
+    image: bdd
+    build: 
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: bdd
+    networks:
+      - database
+    environment:
+      - MYSQL_PASSWORD=<custom password>
+      - MYSQL_ROOT_PASSWORD=<custom password>
+    volumes:
+      - "databasev:/var/lib/mysql"
+
+configs:
+  env:
+    file: x.txt
+
+secrets:
+  certifBdd:
+    file: ./certif/bdd.cerf
+
+networks:
+  prod:
+    name: my_network
+    external: true
+  database:
+
+volumes:
+  databasev:
+    name: mysql
+    external: true

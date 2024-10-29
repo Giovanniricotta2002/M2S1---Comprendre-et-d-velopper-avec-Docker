@@ -28,19 +28,19 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler): ## class custo
         self.wfile.write(response.getvalue()) ## récupère la valeur de la réponse
         with open('data.json', 'w') as fh: ## crée un fichier
                 fh.write(replace(body)) ## ecrit dans un fichier
-        servhttp_to_mysql('data.json', ip) ## envoie les donnée du fichier
+        servhttp_to_mysql('data.json', "bdd") ## envoie les donnée du fichier
         obj_python = infile('data.json') ## recupère les valeur du fichier pour les mettre dans une variable en json
         alerte = obj_python['data']['alerte'] ## recupère la valeur de alerte dans une variabme
         if(alerte == True): ## si la valeur de la variable alerte et en true alors il envoi un mail
             mail_envoi('pio.ricotta@gmail.com', 'inondationdetection@gmail.com', 'raspiadmin', 'Alerte', 'Alerte vous avez trop de temperature')
  
 Handler = MyHttpRequestHandler ## met la class dans une variable
- 
+
 def main(): ## fonction principale
     print(ip) ## affiche l'ip de la raspberry
     try: ## fait que le serveur fonction automatiquement 
         with socketserver.TCPServer((ip, PORT), Handler) as httpd:
-            print("serving at port", PORT)
+            print("serving at port: ", PORT)
             httpd.allow_reuse_address = True
             httpd.serve_forever() ## fait en sorte que le serveur boucle a l'infini
     except KeyboardInterrupt: ## si l'utilisateur coupe le serveur affiche se message

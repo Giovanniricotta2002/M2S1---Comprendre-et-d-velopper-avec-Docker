@@ -2,9 +2,9 @@
 FROM alpine:latest AS init
 
 # Copier vos fichiers dans l'image
-COPY ./api_python /api/
-COPY ./bdd/bdd_detection_innondation.sql /bdd.sql
-COPY ./web /app/
+COPY ../api_python /api/
+COPY ../bdd/bdd_detection_innondation.sql /bdd.sql
+COPY ../web /app/
 
 # Commande par défaut pour garder le conteneur actif
 CMD ["echo", "3600"]
